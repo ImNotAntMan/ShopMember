@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopmember.mapper.MemberMapper">
+	<select id="getList" resultType="com.shopmember.myapp.MemberVO">
+		select * from tblmember order by m_id 
+		limit ${pageAmount} offset ${(pageNum - 1) * pageAmount}
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(m_id) count from tblmember
+	</select>
+	<insert id="insert">
+		insert into tblmember (m_id, m_passwd, m_name) 
+		values (#{m_id},  hex(aes_encrypt(#{m_passwd}, sha2('202200309', 512))), #{m_name})
+	</insert>
+	<select id="auth" resultType = "com.shopmember.myapp.MemberVO">
+		select * from tblmember where m_id = #{m_id} 
+		and m_passwd = hex(aes_encrypt(#{m_passwd}, sha2('202200309', 512))) 
+	</select>
+	<select id="read" resultType="com.shopmember.myapp.MemberVO">
+		select * from tblmember where m_id = #{m_id}
+	</select>
+ 	<update id="update">
+		update tblmember set m_name = #{m_name},
+		m_passwd =  hex(aes_encrypt(#{m_passwd}, sha2('202200309', 512))) where m_id = #{m_id}
+	</update>
+	<delete id="delete">
+		delete from tblmember where m_id = #{m_id} 
+	</delete>
+</mapper>
