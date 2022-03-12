@@ -67,7 +67,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list?pageNum=${pageNum}">회원 목록</a> <a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">수정</a> <a href="/member/delete?m_id=${member.m_id}">삭제</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">정보수정</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

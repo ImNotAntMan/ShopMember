@@ -25,12 +25,12 @@ public class MemberController {
 	private MemberService service;
 	
 	@GetMapping("/info")
-	public String getList(Model model, PageDTO page, HttpSession session) {
+	public String getList(Model model, HttpSession session) {
 		String m_id = (String) session.getAttribute("m_id");
 		MemberVO member = new MemberVO();
 		member.setM_id(m_id);
 //		m_id = "dummy";
-		log.info(m_id);
+		log.info(m_id + "님 ");
 		if(m_id == null) {
 			return "redirect:/member/login";
 		} else {
@@ -42,8 +42,8 @@ public class MemberController {
 	@GetMapping("/read")
 	public void read(Model model, HttpSession session) {
 		String m_id = (String) session.getAttribute("m_id");
-		log.info(m_id);
-		System.out.println(m_id);
+		log.info(m_id + "님");
+		System.out.println(m_id + "님");
 		MemberVO member = new MemberVO();
 		member.setM_id(m_id);
 		model.addAttribute("member", service.read(member));
