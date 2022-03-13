@@ -25,9 +25,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberVO read(String m_id) {
+		return mapper.read(m_id);
+	}
+	
+	@Override
 	public Boolean auth(MemberVO member) {
 		MemberVO tmp;
-		tmp = mapper.read(member);
+		tmp = mapper.auth(member);
 		if(tmp != null) {	// 아이디가 틀린 경우.
 			if(member.getM_passwd().equals(tmp.getM_passwd())) {
 				log.info(tmp);

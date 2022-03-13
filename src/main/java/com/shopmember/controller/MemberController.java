@@ -40,13 +40,18 @@ public class MemberController {
 	}
 	
 	@GetMapping("/read")
-	public void read(Model model, HttpSession session) {
+	public String read(Model model, HttpSession session) {
 		String m_id = (String) session.getAttribute("m_id");
 		log.info(m_id + "님");
 		System.out.println(m_id + "님");
-		MemberVO member = new MemberVO();
-		member.setM_id(m_id);
-		model.addAttribute("member", service.read(member));
+		if(m_id == null) {
+			return "redirect:/member/login";
+		} else {
+			MemberVO member = new MemberVO();
+			member.setM_id(m_id);
+			model.addAttribute("member", service.read(member));
+			return "/member/read";
+		}
 	}
 	
 	@GetMapping("/insert")
@@ -88,12 +93,13 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(MemberVO member, HttpSession session) {
 		log.info(member);
-		System.out.println(member);
+//		System.out.println(member);
 		boolean chk = service.auth(member);
 		if(chk == true) {
 			member = service.read(member);
 			log.info("인증성공");
-			System.out.println("LogIn Success");
+			System.out.println(member);
+			System.out.println("LogIn Success~~~~");
 			session.setAttribute("m_id", member.getM_id());
 			session.setAttribute("m_name", member.getM_name());
 			return "redirect:/";

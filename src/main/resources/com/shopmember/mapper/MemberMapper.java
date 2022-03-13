@@ -20,4 +20,6 @@ public interface MemberMapper {
 	public void delete(MemberVO member);
 	
 	public int getTotalCount();
+
+	public MemberVO read(String m_id);
 }
