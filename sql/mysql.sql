@@ -6,7 +6,9 @@ create table tblmember (
 	m_rdate datetime not null default sysdate(),
 	m_udate datetime not null default sysdate()
 );
-
+select * from tblmember where m_id = 'lion'
+		and m_passwd = hex(aes_encrypt('1234', sha2('202200309', 512)));
+		
 create table tblboard2 (
 	b_num int not null primary key auto_increment,
 	b_subject varchar(100) not null,

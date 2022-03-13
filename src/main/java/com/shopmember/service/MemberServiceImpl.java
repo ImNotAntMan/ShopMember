@@ -33,21 +33,15 @@ public class MemberServiceImpl implements MemberService {
 	public Boolean auth(MemberVO member) {
 		MemberVO tmp;
 		tmp = mapper.auth(member);
-		if(tmp != null) {	// 아이디가 틀린 경우.
-			if(member.getM_passwd().equals(tmp.getM_passwd())) {
-				log.info(tmp);
-				log.info(member);
-				log.info("인증 성공");
-				return true;
-			} else {	// 아이디는 이치하나 암호가 일치하지 않는 경우
-				log.info(tmp);
-				log.info(member);
-				log.info("아이디는 동일하나 암호가 틀림");
-				return false;
-			}
-		} else {	// 아이디가 존재하는 경우
-			log.info(member);
-			log.info("아이디가 존재하지 않음.");
+		log.info(tmp);
+		log.info("________________________");
+		if(tmp != null) {	// 인증 성공
+			log.info(tmp);
+			log.info("인증 성공");
+			return true;
+		} else {	// 일치하지 않는 경우
+			log.info(tmp);
+			log.info("틀림");
 			return false;
 		}
 	}
