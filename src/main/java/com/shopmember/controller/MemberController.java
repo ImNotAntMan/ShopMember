@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopmember.myapp.MemberVO;
 import com.shopmember.myapp.PageDTO;
+import com.shopmember.myapp.ShippingVO;
 import com.shopmember.service.MemberService;
+import com.shopmember.service.ShippingService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -23,6 +25,9 @@ public class MemberController {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ShippingService shippingservice;
 	
 	@GetMapping("/info")
 	public String getList(Model model, HttpSession session) {
@@ -40,16 +45,19 @@ public class MemberController {
 	}
 	
 	@GetMapping("/read")
-	public String read(Model model, HttpSession session) {
+	public String read(Model model, HttpSession session, PageDTO page) {
 		String m_id = (String) session.getAttribute("m_id");
-		log.info(m_id + "님");
-		System.out.println(m_id + "님");
+		log.info(m_id + "님 씨발");
 		if(m_id == null) {
 			return "redirect:/member/login";
 		} else {
 			MemberVO member = new MemberVO();
+			ShippingVO shipping = new ShippingVO();
+			shipping.setM_id(m_id);
 			member.setM_id(m_id);
+			log.info(shipping);
 			model.addAttribute("member", service.read(member));
+			model.addAttribute("list", shippingservice.getList(shipping));
 			return "/member/read";
 		}
 	}
@@ -102,7 +110,7 @@ public class MemberController {
 			System.out.println("LogIn Success~~~~");
 			session.setAttribute("m_id", member.getM_id());
 			session.setAttribute("m_name", member.getM_name());
-			return "redirect:/";
+			return "redirect:/read";
 		} else {
 			log.info("인증실패");
 			System.out.println("LogIn Failed");
@@ -115,5 +123,16 @@ public class MemberController {
 		session.invalidate();//세션 끊기
 		System.out.println("LogOut Success");
 		return "redirect:/";
+	}
+	
+	@GetMapping("/shippingupdate")
+	public void shippingupdate(ShippingVO shipping, Model model) {
+		shipping = shippingservice.read(shipping);
+		model.addAttribute("list", shipping);
+	}
+
+	@PostMapping("/shippingupdate")
+	public void shippingupdate(ShippingVO shipping) {
+		
 	}
 }

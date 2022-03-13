@@ -27,6 +27,18 @@ create table deliveryinfo (
 	d_rdate datetime not null default sysdate(),
 	d_udate datetime not null default sysdate()
 );
+
+/* 배송지 관리를 위한 테이블 tblshipping 추가 */
+create table tblshipping (
+	s_num int not null primary key auto_increment,
+	m_id varchar(200) not null,
+	s_zipcode varchar(30) not null,
+	s_address01 varchar(200),
+	s_address02 varchar(200),
+	s_rdate datetime not null default sysdate(),
+	s_udate datetime not null default sysdate()
+);
+insert into tblshipping select * from deliveryinfo;
 select * from tbladmin where a_id ='admin';
 insert into tblboard2(b_subject, b_contents, b_name) 
 	select b_subject, b_contents, b_name from tblboard2;

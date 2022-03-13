@@ -33,7 +33,6 @@ public class MemberServiceImpl implements MemberService {
 	public Boolean auth(MemberVO member) {
 		MemberVO tmp;
 		tmp = mapper.auth(member);
-		log.info(tmp);
 		log.info("________________________");
 		if(tmp != null) {	// 인증 성공
 			log.info(tmp);

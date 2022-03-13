@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>회원 관리</title>
 
     <!-- Custom fonts for this template -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,50 +61,27 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">상세보기</h1>
+                    <h1 class="h3 mb-2 text-gray-800">수정하기</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">정보수정</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">게시판 목록</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            <form class="user" action="/member/shippingupdate" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        이름 : ${member.m_name}
+                                        주소 1: <input type="text" name="s_address01" value="${list.s_address01}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                   가입일 : ${member.m_rdate}
+                                   주소 2 : <input type="text" name="s_address02" value="${list.s_address02}">
                                 </div>
-                                <div class="form-group">
-                                   아이디 : ${member.m_id}
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                    <h1 class="h3 mb-2 text-gray-800">배송지 리스트</h1>
-                    <p class="mb-4"></p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">정보수정</a></h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                             	<c:forEach items="${list}" var="shipping">
-                                <div class="form-group row">
-                                 		<div class="col-sm-6 mb-3 mb-sm-0">
-                                        	주소 : ${shipping.s_address01}<br>${shipping.s_address02}<a href="/member/shippingupdate?s_num=${shipping.s_num}">수정</a>
-                                    	</div>
-								</div>
-                                	</c:forEach>
+                                <input type="submit" class="form-control" />
+                            </form>
                             </div>
                         </div>
                     </div>
