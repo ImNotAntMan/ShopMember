@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopmember.mapper.ProductMapper">
+	<select id="getList" resultType="com.shopmember.myapp.ProductVO">
+		select * from tblproduct order by p_code desc
+	</select>
+	<insert id="insert">
+		insert into tblproduct (p_name, p_price) 
+		values (#{p_name}, #{p_price})
+	</insert>
+	<select id="read" resultType="com.shopmember.myapp.ProductVO">
+		select * from tblproduct where p_code = #{p_code}
+	</select>
+ 	<update id="update">
+		update tblproduct set p_name = #{p_name}, p_price = #{p_price} where p_code = #{p_code}
+	</update>
+	<delete id="delete">
+		delete from tblproduct where p_code = #{p_code} 
+	</delete>
+</mapper>

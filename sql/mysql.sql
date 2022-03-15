@@ -14,6 +14,7 @@ create table tblboard2 (
 	b_subject varchar(100) not null,
 	b_contents varchar(3000) not null,
 	b_file varchar(400),
+	b_filehash varchar(400),
 	b_name varchar(50) not null,
 	b_date datetime not null default sysdate()
 );
