@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.it.domain.ProductVO;
-import com.it.mapper.ProductMapper;
+import com.shopmember.mapper.ProductMapper;
+import com.shopmember.myapp.ProductVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
-
+ 
 	@Override
 	public List<ProductVO> getList(){
 		return mapper.getList();

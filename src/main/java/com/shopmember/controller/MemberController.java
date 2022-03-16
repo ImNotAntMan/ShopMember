@@ -47,7 +47,7 @@ public class MemberController {
 	@GetMapping("/read")
 	public String read(Model model, HttpSession session, PageDTO page) {
 		String m_id = (String) session.getAttribute("m_id");
-		log.info(m_id + "님 씨발");
+		log.info(m_id + "님 이러면 안되지~~~");
 		if(m_id == null) {
 			return "redirect:/member/login";
 		} else {
@@ -110,7 +110,7 @@ public class MemberController {
 			System.out.println("LogIn Success~~~~");
 			session.setAttribute("m_id", member.getM_id());
 			session.setAttribute("m_name", member.getM_name());
-			return "redirect:/read";
+			return "redirect:/member/read";
 		} else {
 			log.info("인증실패");
 			System.out.println("LogIn Failed");

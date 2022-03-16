@@ -2,7 +2,7 @@ package com.shopmember.service;
 
 import java.util.List;
 
-import com.it.domain.ProductVO;
+import com.shopmember.myapp.ProductVO;
 
 public interface ProductService {
 

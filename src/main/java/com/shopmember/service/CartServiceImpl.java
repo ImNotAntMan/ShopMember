@@ -3,9 +3,9 @@ package com.shopmember.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.it.domain.CartmainVO;
-import com.it.domain.CartsubVO;
-import com.it.mapper.CartMapper;
+import com.shopmember.mapper.CartMapper;
+import com.shopmember.myapp.CartmainVO;
+import com.shopmember.myapp.CartsubVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j;
 public class CartServiceImpl implements CartService {
 
 	@Setter(onMethod_ = @Autowired)
-	private CartMapper mapper;
+	private CartMapper mapper; 
 	
 	@Override
 	public void cartinsert(CartmainVO cartmain, CartsubVO cartsub) {
