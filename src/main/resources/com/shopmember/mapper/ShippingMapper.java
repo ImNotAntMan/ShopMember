@@ -17,4 +17,7 @@ public interface ShippingMapper {
 	public void delete(ShippingVO shipping);
 	
 	public int getTotalCount(ShippingVO shipping);
+	
+	public ShippingVO readnum(ShippingVO shipping);
 }
+

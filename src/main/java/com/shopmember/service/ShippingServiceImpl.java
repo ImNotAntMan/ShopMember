@@ -47,5 +47,11 @@ public class ShippingServiceImpl implements ShippingService {
 	public int getTotalCount(ShippingVO shipping) {
 		return mapper.getTotalCount(shipping);
 	}
+	
+	@Override
+	public ShippingVO readnum(ShippingVO shipping) {
+		return mapper.read(shipping);
+	}
+
 
 }

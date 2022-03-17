@@ -67,11 +67,11 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">게시판 목록</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/read?m_id=${list.m_id}">배송지 목록</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form class="user" action="/member/shippingupdate" method="post">
+                            <form class="user" action="/member/test" method="post">
                             	<input type="hidden" name="m_id" value="${list.m_id}">
                             	<input type="hidden" name="s_num" value="${list.s_num}">
                                 <div class="form-group">

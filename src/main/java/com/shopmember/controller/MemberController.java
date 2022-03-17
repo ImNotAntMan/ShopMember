@@ -27,7 +27,7 @@ public class MemberController {
 	private MemberService service;
 	
 	@Setter(onMethod_ = @Autowired)
-	private ShippingService shippingservice;
+	private ShippingService shippingservice;	// 배송지 관리를 위한 서비스
 	
 	@GetMapping("/info")
 	public String getList(Model model, HttpSession session) {
@@ -136,12 +136,14 @@ public class MemberController {
 	@PostMapping("/shippinginsert")
 	public String shippinginsert(ShippingVO shipping) {
 		shippingservice.insert(shipping);
-		return "redirect:/member/read?m_id=" + shipping.getM_id();
+		return "redirect:/member/zipcode?m_id=" + shipping.getM_id();
 	}
 	
-	@GetMapping("/shippingupdate")
+	@GetMapping("/test")
 	public void shippingupdate(ShippingVO shipping, Model model) {
-		shipping = shippingservice.read(shipping);
+		log.info("좋은것~!! test");
+		shipping = shippingservice.readnum(shipping);
+		log.info(shipping);
 		model.addAttribute("list", shipping);
 	}
 
@@ -156,6 +158,12 @@ public class MemberController {
 	@GetMapping("/shippingdelete")
 	public String shippingdelete(ShippingVO shipping) {
 		shippingservice.delete(shipping);
-		return "redirect:/member/read?m_id=" + shipping.getM_id();
+		return "redirect:/member/zipcode?m_id=" + shipping.getM_id();
+	}
+	
+	@GetMapping("/zipcode")
+	public void zipcode(ShippingVO shipping, Model model) {
+		log.info(shippingservice.getList(shipping));
+		model.addAttribute("list", shippingservice.getList(shipping));
 	}
 }

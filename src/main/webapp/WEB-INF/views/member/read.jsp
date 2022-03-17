@@ -11,8 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Tables</title>
+	<script>
+		function ZipWinOpen(m_id) {
+			window.open("/member/zipcode?m_id="+m_id, "", "width=500,height=600,toolbar=no, menubar=no, scrollbar=no");
+		}
+	</script>
+    <title>회원 정보</title>
 
     <!-- Custom fonts for this template -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -94,7 +98,8 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/shippinginsert?m_id=${member.m_id}">등록</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary">
+                            <input type="button" value="배송지 등록" class="form-control" onclick="ZipWinOpen('${member.m_id}')">
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -103,7 +108,7 @@
                                  		<div class="col-sm-6 mb-3 mb-sm-0">
                                         	${shipping.s_num}.우편번호 : ${shipping.s_zipcode }<br>
                                         	주소 : ${shipping.s_address01}&nbsp;&nbsp;${shipping.s_address02}<br>
-                                        	<a href="/member/shippingupdate?s_num=${shipping.s_num}&m_id=${m_id}">수정</a>&nbsp;&nbsp;&nbsp;
+                                        	<a href="/member/test?s_num=${shipping.s_num}&m_id=${m_id}">수정</a>&nbsp;&nbsp;&nbsp;
                                         	<a href="/member/shippingdelete?s_num=${shipping.s_num}">삭제</a>
                                     	</div>
 								</div>
