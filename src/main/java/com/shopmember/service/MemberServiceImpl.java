@@ -30,6 +30,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberVO readnum(MemberVO member) {
+		return mapper.readnum(member);
+	}
+	
+	@Override
 	public Boolean auth(MemberVO member) {
 		MemberVO tmp;
 		tmp = mapper.auth(member);

@@ -58,6 +58,8 @@ public class MemberController {
 			log.info(shipping);
 			model.addAttribute("member", service.read(member));
 			model.addAttribute("list", shippingservice.getList(shipping));
+			log.info(shippingservice.getList(shipping));
+			log.info("read에요");
 			return "/member/read";
 		}
 	}
@@ -125,6 +127,18 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/shippinginsert")
+	public void shipinginsert(Model model, HttpSession session) {
+		String m_id = (String) session.getAttribute("m_id");
+		model.addAttribute("m_id", m_id);
+	}
+	
+	@PostMapping("/shippinginsert")
+	public String shippinginsert(ShippingVO shipping) {
+		shippingservice.insert(shipping);
+		return "redirect:/member/read?m_id=" + shipping.getM_id();
+	}
+	
 	@GetMapping("/shippingupdate")
 	public void shippingupdate(ShippingVO shipping, Model model) {
 		shipping = shippingservice.read(shipping);
@@ -132,7 +146,16 @@ public class MemberController {
 	}
 
 	@PostMapping("/shippingupdate")
-	public void shippingupdate(ShippingVO shipping) {
-		
+	public String shippingupdate(ShippingVO shipping) {
+		shippingservice.update(shipping);
+		log.info(shipping);
+		log.info("_________________________________");
+		return "redirect:/member/read?m_id=" + shipping.getM_id();
+	}
+	
+	@GetMapping("/shippingdelete")
+	public String shippingdelete(ShippingVO shipping) {
+		shippingservice.delete(shipping);
+		return "redirect:/member/read?m_id=" + shipping.getM_id();
 	}
 }

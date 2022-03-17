@@ -13,6 +13,8 @@ public interface MemberMapper {
 	
 	public MemberVO read(MemberVO member);
 	
+	public MemberVO readnum(MemberVO member);
+	
 	public MemberVO auth(MemberVO member);
 	
 	public void update(MemberVO member);

@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>회원 관리</title>
 
     <!-- Custom fonts for this template -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,53 +61,42 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">상세보기</h1>
+                    <h1 class="h3 mb-2 text-gray-800">회원 가입</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">정보수정</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">회원 목록</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            <form method="post" action="/member/shippinginsert" class="user" >
+                            	<input type="hidden" name="m_id" value="${m_id}">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        이름 : ${member.m_name}
+                                    <label>아이디 : </label>${m_id}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>주소</label>
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="아이디를 입력하세요" name="s_address01">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                   가입일 : ${member.m_rdate}
+                                <label>나머지 주소</label>
+                                   <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="이름을 입력하세요" name="s_address02">
                                 </div>
                                 <div class="form-group">
-                                   아이디 : ${member.m_id}
+                                <label>우편번호</label>
+                                   <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="이름을 입력하세요" name="s_zipcode">
                                 </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                    <h1 class="h3 mb-2 text-gray-800">배송지 리스트</h1>
-                    <p class="mb-4"></p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/shippinginsert?m_id=${member.m_id}">등록</a></h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                             	<c:forEach items="${list}" var="shipping">
-                                <div class="form-group row">
-                                 		<div class="col-sm-6 mb-3 mb-sm-0">
-                                        	${shipping.s_num}.우편번호 : ${shipping.s_zipcode }<br>
-                                        	주소 : ${shipping.s_address01}&nbsp;&nbsp;${shipping.s_address02}<br>
-                                        	<a href="/member/shippingupdate?s_num=${shipping.s_num}&m_id=${m_id}">수정</a>&nbsp;&nbsp;&nbsp;
-                                        	<a href="/member/shippingdelete?s_num=${shipping.s_num}">삭제</a>
-                                    	</div>
-								</div>
-                               	</c:forEach>
+                                <input type="submit" class="form-control" />
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -117,5 +106,4 @@
 
 <%@include file="../include/footer.jsp" %>
 </body>
-
 </html>

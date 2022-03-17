@@ -10,6 +10,8 @@ public interface MemberService {
 	
 	public MemberVO read(String m_id);
 	
+	public MemberVO readnum(MemberVO member);
+	
 	public Boolean auth(MemberVO member);	// 아이디와 암호를 전달하여 인증 처리 T or F
 	
 	public void insert(MemberVO member);	// 레코드 입력

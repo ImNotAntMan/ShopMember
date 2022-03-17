@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>회원 관리</title>
+    <title>배송지 관리</title>
 
     <!-- Custom fonts for this template -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -72,13 +72,23 @@
                         <div class="card-body">
                             <div class="table-responsive">
                             <form class="user" action="/member/shippingupdate" method="post">
-                                <div class="form-group row">
+                            	<input type="hidden" name="m_id" value="${list.m_id}">
+                            	<input type="hidden" name="s_num" value="${list.s_num}">
+                                <div class="form-group">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        아이디 : ${list.m_id}
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         주소 1: <input type="text" name="s_address01" value="${list.s_address01}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                    주소 2 : <input type="text" name="s_address02" value="${list.s_address02}">
+                                </div>
+                                <div class="form-group">
+                                   우편번호 : <input type="text" name="s_zipcode" value="${list.s_zipcode}">
                                 </div>
                                 <input type="submit" class="form-control" />
                             </form>

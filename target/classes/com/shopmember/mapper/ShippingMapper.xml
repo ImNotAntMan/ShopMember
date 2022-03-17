@@ -16,11 +16,14 @@
 	<select id="read" resultType="com.shopmember.myapp.ShippingVO">
 		select * from tblshipping where m_id = #{m_id}
 	</select>
+	<select id="readnum" resultType="com.shopmember.myapp.ShippingVO">
+		select * from tblshipping where m_id = #{m_id} and s_num = #{s_num}
+	</select>
  	<update id="update">
 		update tblshipping set s_zipcode = #{s_zipcode}, s_address01 = #{s_address01}, 
-		s_address02 = #{s_address02} where m_id = #{m_id}
+		s_address02 = #{s_address02} where m_id = #{m_id} and s_num = #{s_num}
 	</update>
 	<delete id="delete">
-		delete from tblshipping where m_id = #{m_id} and s_num = #{s_num}
+		delete from tblshipping where s_num = #{s_num}
 	</delete>
 </mapper>
