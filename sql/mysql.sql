@@ -19,6 +19,16 @@ create table tblboard2 (
 	b_date datetime not null default sysdate()
 );
 
+create table tblzipcode (
+    s_num int not null primary key auto_increment,
+    m_id varchar(100) not null, 
+    s_address01 varchar(300) not null,
+    s_address02 varchar(300) not null,
+    s_zipcode varchar(10) not null,
+    s_rdate datetime not null default sysdate(),
+    s_udate datetime not null default sysdate()
+);
+
 create table deliveryinfo (
 	d_num int not null primary key auto_increment,
 	m_id varchar(200) not null,

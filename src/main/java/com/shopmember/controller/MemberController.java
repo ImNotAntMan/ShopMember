@@ -170,8 +170,20 @@ public class MemberController {
 	}
 	
 	@GetMapping("/zipcode")
-	public void zipcode(ShippingVO shipping, Model model) {
-		log.info(shippingservice.getList(shipping));
-		model.addAttribute("list", shippingservice.getList(shipping));
+	public void zipcode(ShippingVO shipping, Model model, PageDTO page) {
+		int pageNum = page.getPageNum();
+		if(pageNum == 0 || pageNum < 0) {
+			pageNum = 1;
+		}
+		int pageAmount = page.getPageAmount();
+		if(pageAmount == 0 || pageAmount < 0) {
+			pageAmount = 10;
+		}
+		String m_id = shipping.getM_id();
+		int total = shippingservice.getTotalCount(shipping);
+		PageViewDTO pageview = new PageViewDTO(page, total);
+		log.info(shippingservice.getList(pageNum, pageAmount, m_id));
+		model.addAttribute("list", shippingservice.getList(pageNum, pageAmount, m_id));
+		model.addAttribute("pageview", pageview);
 	}
 }

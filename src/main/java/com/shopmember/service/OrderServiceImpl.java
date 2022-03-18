@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 			ordersub.setOs_cnt(item.getCs_cnt());
 			ordermapper.insertSub(ordersub);
 		}
-		cartmapper.deletesuball(cartmain);
+		cartmapper.deleteSub(cartmain); 
 		cartmapper.deleteMain(cartmain);
 		
 		return ordermain;

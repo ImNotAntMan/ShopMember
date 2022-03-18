@@ -7,7 +7,7 @@ import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartmemberDTO;
 import com.shopmember.myapp.CartsubVO;
 
-public interface CartService {
+public interface CartService { 
 	
 	public void cartinsert(CartmainVO cartmain, CartsubVO cartsub);
 
