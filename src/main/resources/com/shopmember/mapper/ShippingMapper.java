@@ -2,11 +2,13 @@ package com.shopmember.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.shopmember.myapp.ShippingVO;
 
 public interface ShippingMapper {
 
-	public List<ShippingVO> getList(ShippingVO shipping);
+	public List<ShippingVO> getList(@Param("pageNum") int pageNum, @Param("pageAmount") int pageAmount, @Param("m_id") String m_id);
 	
 	public ShippingVO read(ShippingVO shipping);
 	

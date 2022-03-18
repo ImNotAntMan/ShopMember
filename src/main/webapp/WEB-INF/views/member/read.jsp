@@ -114,6 +114,28 @@
 								</div>
                                	</c:forEach>
                             </div>
+                            <div>
+                                    	<tr>
+                                    		<td colspan="1" align="center">
+                                    			<c:if test="${pageview.prev}">
+                                    				<a href="/board2/list?pageNum=${pageview.startPage - 1}">[<<]</a>&nbsp;&nbsp;
+                                    				<a href="/board2/list?pageNum=${pageview.startPage - 1}">[Prev]</a>&nbsp;&nbsp;
+                                    			</c:if>
+                                    			<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}">
+                                    				<c:if test="${num != pageview.page.pageNum}">
+                                    					<a href="/board2/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
+                                    				</c:if>
+                                    				<c:if test="${num == pageview.page.pageNum}">
+                                    					<b>[${num}]</b>&nbsp;&nbsp;
+                                    				</c:if>
+                                    			</c:forEach>
+                                    			<c:if test="${pageview.next}">
+                                    				<a href="/board2/list?pageNum=${pageview.endPage + 1}">[Next>]</a>&nbsp;&nbsp;
+                                    				<a href="/board2/list?pageNum=${pageview.endPage + 1}">[>>]</a>&nbsp;&nbsp;
+                                    			</c:if>                                    			
+                                    		</td>
+                                    	</tr>
+                        	</div>
                         </div>
                     </div>
 

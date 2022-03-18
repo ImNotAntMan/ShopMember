@@ -2,6 +2,7 @@ package com.shopmember.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,8 @@ public class ShippingServiceImpl implements ShippingService {
 	}
 	
 	@Override
-	public List<ShippingVO> getList(ShippingVO shipping) {
-		return mapper.getList(shipping);
+	public List<ShippingVO> getList(@Param("pageNum") int pageNum, @Param("pageAmount") int pageAmount, @Param("m_id") String m_id) {
+		return mapper.getList(pageNum, pageAmount, m_id);
 	}
 	
 	@Override

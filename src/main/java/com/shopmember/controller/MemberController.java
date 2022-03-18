@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shopmember.myapp.MemberVO;
 import com.shopmember.myapp.PageDTO;
+import com.shopmember.myapp.PageViewDTO;
 import com.shopmember.myapp.ShippingVO;
 import com.shopmember.service.MemberService;
 import com.shopmember.service.ShippingService;
@@ -55,11 +56,18 @@ public class MemberController {
 			ShippingVO shipping = new ShippingVO();
 			shipping.setM_id(m_id);
 			member.setM_id(m_id);
+			int pageAmount = 10;
+			int pageNum = page.getPageNum();
+			page.setPageAmount(pageAmount);
+			int total = shippingservice.getTotalCount(shipping);
+			PageViewDTO pageview = new PageViewDTO(page, total);
 			log.info(shipping);
 			model.addAttribute("member", service.read(member));
-			model.addAttribute("list", shippingservice.getList(shipping));
-			log.info(shippingservice.getList(shipping));
+			model.addAttribute("list", shippingservice.getList(pageNum, pageAmount, m_id));
+			model.addAttribute("pageview", pageview);
+			log.info(shippingservice.getList(pageNum, pageAmount, m_id));
 			log.info("read에요");
+			log.info(pageview);
 			return "/member/read";
 		}
 	}
