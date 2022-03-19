@@ -106,9 +106,9 @@
                              	<c:forEach items="${list}" var="shipping">
                                 <div class="form-group row">
                                  		<div class="col-sm-6 mb-3 mb-sm-0">
-                                        	${shipping.s_num}.우편번호 : ${shipping.s_zipcode }<br>
+                                        	우편번호 : ${shipping.s_zipcode }<br>
                                         	주소 : ${shipping.s_address01}&nbsp;&nbsp;${shipping.s_address02}<br>
-                                        	<a href="/member/test?s_num=${shipping.s_num}&m_id=${m_id}">수정</a>&nbsp;&nbsp;&nbsp;
+                                        	<a href="/member/shippingupdate?s_num=${shipping.s_num}&m_id=${m_id}">수정</a>&nbsp;&nbsp;&nbsp;
                                         	<a href="/member/shippingdelete?s_num=${shipping.s_num}">삭제</a>
                                     	</div>
 								</div>
@@ -118,20 +118,20 @@
                                     	<tr>
                                     		<td colspan="1" align="center">
                                     			<c:if test="${pageview.prev}">
-                                    				<a href="/board2/list?pageNum=${pageview.startPage - 1}">[<<]</a>&nbsp;&nbsp;
-                                    				<a href="/board2/list?pageNum=${pageview.startPage - 1}">[Prev]</a>&nbsp;&nbsp;
+                                    				<a href="/member/read?pageNum=${pageview.startPage - 1}&m_id=${m_id}">[<<]</a>&nbsp;&nbsp;
+                                    				<a href="/member/read?pageNum=${pageview.startPage - 1}&m_id=${m_id}">[Prev]</a>&nbsp;&nbsp;
                                     			</c:if>
                                     			<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}">
                                     				<c:if test="${num != pageview.page.pageNum}">
-                                    					<a href="/board2/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
+                                    					<a href="/member/read?pageNum=${num}&m_id=${m_id}">[${num}]</a>&nbsp;&nbsp;
                                     				</c:if>
                                     				<c:if test="${num == pageview.page.pageNum}">
                                     					<b>[${num}]</b>&nbsp;&nbsp;
                                     				</c:if>
                                     			</c:forEach>
                                     			<c:if test="${pageview.next}">
-                                    				<a href="/board2/list?pageNum=${pageview.endPage + 1}">[Next>]</a>&nbsp;&nbsp;
-                                    				<a href="/board2/list?pageNum=${pageview.endPage + 1}">[>>]</a>&nbsp;&nbsp;
+                                    				<a href="/member/read?pageNum=${pageview.endPage + 1}&m_id=${m_id}">[Next>]</a>&nbsp;&nbsp;
+                                    				<a href="/member/read?pageNum=${pageview.endPage + 1}&m_id=${m_id}">[>>]</a>&nbsp;&nbsp;
                                     			</c:if>                                    			
                                     		</td>
                                     	</tr>

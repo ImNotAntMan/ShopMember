@@ -10,7 +10,7 @@ public interface CartMapper {
 	
 	public List<CartsubVO> getListSub();
 	
-	public List<CartsubVO> getListCart();
+	public List<CartsubVO> getListCart(CartmainVO cartmain);
 
 	public CartmainVO readMain(CartmainVO cartmain);
 	
@@ -29,5 +29,7 @@ public interface CartMapper {
 	public void deleteMain(CartmainVO cartmain);
 	
 	public void deleteSub(CartsubVO cartsub);
+
+	public void deleteSuball(CartmainVO cartmain);
 	
 }

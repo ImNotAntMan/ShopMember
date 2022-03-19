@@ -51,7 +51,7 @@ public class ShippingServiceImpl implements ShippingService {
 	
 	@Override
 	public ShippingVO readnum(ShippingVO shipping) {
-		return mapper.read(shipping);
+		return mapper.readnum(shipping);
 	}
 
 

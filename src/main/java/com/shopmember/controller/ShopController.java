@@ -62,6 +62,8 @@ public class ShopController {
 			return "redirect:/shop/member/login";
 		}
 	}
+	
+	@GetMapping("/cartinfo")
 	public String cartinfo(HttpSession session, Model model) {
 		// 로그인 상태 확인 (제어구조(세션변수를 확인)를 먼저 만들어보자)
 		String m_id = (String)session.getAttribute("m_id");

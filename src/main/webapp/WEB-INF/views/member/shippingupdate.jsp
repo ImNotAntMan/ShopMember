@@ -71,7 +71,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form class="user" action="/member/test" method="post">
+                            <form class="user" action="/member/shippingupdate" method="post">
                             	<input type="hidden" name="m_id" value="${list.m_id}">
                             	<input type="hidden" name="s_num" value="${list.s_num}">
                                 <div class="form-group">

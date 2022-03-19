@@ -56,7 +56,7 @@ public class MemberController {
 			ShippingVO shipping = new ShippingVO();
 			shipping.setM_id(m_id);
 			member.setM_id(m_id);
-			int pageAmount = 10;
+			int pageAmount = 5;
 			int pageNum = page.getPageNum();
 			page.setPageAmount(pageAmount);
 			int total = shippingservice.getTotalCount(shipping);
@@ -148,10 +148,17 @@ public class MemberController {
 	}
 	
 	@GetMapping("/test")
-	public void shippingupdate(ShippingVO shipping, Model model) {
+	public void shippingupdatetest(ShippingVO shipping, Model model) {
 		log.info("좋은것~!! test");
 		shipping = shippingservice.readnum(shipping);
 		log.info(shipping);
+		model.addAttribute("list", shipping);
+	}
+	
+	@GetMapping("/shippingupdate")
+	public void shippingupdate(ShippingVO shipping, Model model) {
+		log.info(shipping);
+		shipping = shippingservice.readnum(shipping);
 		model.addAttribute("list", shipping);
 	}
 
@@ -177,8 +184,10 @@ public class MemberController {
 		}
 		int pageAmount = page.getPageAmount();
 		if(pageAmount == 0 || pageAmount < 0) {
-			pageAmount = 10;
+			pageAmount = 5;
 		}
+		page.setPageAmount(5);
+		pageAmount = 5;
 		String m_id = shipping.getM_id();
 		int total = shippingservice.getTotalCount(shipping);
 		PageViewDTO pageview = new PageViewDTO(page, total);

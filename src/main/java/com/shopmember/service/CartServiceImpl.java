@@ -1,5 +1,7 @@
 package com.shopmember.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +42,39 @@ public class CartServiceImpl implements CartService {
 				mapper.updateSub(cs);
 			}
 		}
+	}
+	
+	@Override
+	public List<CartsubVO> getListCart(CartmainVO cartmain) {
+		return mapper.getListCart(cartmain);
+	}
+	
+	@Override
+	public CartmainVO readMainid(CartmainVO cartmain) {
+		return mapper.readMainid(cartmain);
+	} 
+	
+//	@Override
+//	public void deleteSub(CartsubVO cartsub) {
+//		log.info(cartsub);
+//		mapper.deleteSub(cartsub);
+//	}
+//	
+//	@Override
+//	public void updateSub(CartsubVO cartsub) {
+//		mapper.updateSub(cartsub);
+//	}
+	
+	@Override
+	public void deleteMain(CartmainVO cartmain) {
+		mapper.deleteMain(cartmain);
+	}
+	
+	@Override
+	public void cartdeleteAll(CartmainVO cartmain) {
+		log.info(cartmain);
+//		mapper.deleteSub(cartmain);
+//		mapper.deleteMain(cartmain);
+//		return "redirect:/shop/cartinfo";
 	}
 }
