@@ -64,7 +64,8 @@ public class MemberController {
 			log.info(shipping);
 			model.addAttribute("member", service.read(member));
 			model.addAttribute("list", shippingservice.getList(pageNum, pageAmount, m_id));
-			model.addAttribute("pageview", pageview);
+			model.addAttribute("pageview"
+					, pageview);
 			log.info(shippingservice.getList(pageNum, pageAmount, m_id));
 			log.info("read에요");
 			log.info(pageview);
