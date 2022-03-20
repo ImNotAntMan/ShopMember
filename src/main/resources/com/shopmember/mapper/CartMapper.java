@@ -2,7 +2,9 @@ package com.shopmember.mapper;
 
 import java.util.List;
 
+import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
+import com.shopmember.myapp.CartmemberDTO;
 import com.shopmember.myapp.CartsubVO;
 
 public interface CartMapper {
@@ -31,5 +33,9 @@ public interface CartMapper {
 	public void deleteSub(CartsubVO cartsub);
 
 	public void deleteSuball(CartmainVO cartmain);
+
+	public List<CartdetailDTO> getListCartDetail(CartmainVO cartmain);
+	
+	public int getCartTotal(CartmainVO cartmain);
 	
 }

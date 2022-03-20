@@ -3,9 +3,9 @@ package com.shopmember.myapp;
 import lombok.Data;
 
 @Data
-public class OrderdetailDTO {
+public class OrderdetailDTO { 
 	private int os_code;
-	private int p_code;
+	private int p_code; 
 	private String p_name;
 	private int p_price;
 	private int os_cnt;

@@ -69,7 +69,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
                             	<a href="/shop/list">상품 리스트</a><br>
-                            	${carttotal.m_id}(${carttotal.m_name})&nbsp;&nbsp;${cartmain}
+                            	${cartmember.m_id}(${cartmember.m_name})&nbsp;&nbsp;${cartmain}
                             </h6>
                         </div>
                         <div class="card-body">
@@ -120,25 +120,15 @@
                                 			</tr>
                                 		</c:forEach>
                                 		<tr border=0>
-                                			<td>합계</td><td border=0></td><td></td><td></td><td></td><td></td>
+                                			<td>합계</td><td border=0></td><td></td><td></td><td></td>
                                 			<td>
-                                			<fmt:formatNumber value="${carttotal.cm_total}" pattern="#,###" />원
+                                			<fmt:formatNumber value="${cartmember.cm_total}" pattern="#,###" />원
                                 			<c:if test="${not empty cartmain}">
                                 				<a href="/shop/cartdeleteall?cm_code=${cartmain}">모두삭제</a>
-                                				&nbsp;&nbsp<a href="/shop/orderinfo?cm_code=${cartmain}">주문</a>
+                                				&nbsp;&nbsp<a href="/shop/orderprepare">주문</a>
                                 			</c:if>
                                 			</td>
                                 		</tr>
-<%--                                     	<c:forEach items="${list}" var="shop">
-                                    		<tr>
-                                    			<td><a href="/shop/read?p_code=${shop.p_code}">${shop.p_code}</a></td>
-                                    			<td>${shop.p_name}</td>
-                                    			<td>${shop.p_price}원</td>
-                                    			<td><img src="/resources/product/${shop.p_code}.jpg" height="50" width = "40"></td>
-                                    			<td><fmt:formatDate pattern="yyyy-MM-dd HH-mm-ss" value="${shop.p_rdate}" /></td>
-                                    			<td><fmt:formatDate pattern="yyyy-MM-dd HH-mm-ss" value="${shop.p_udate}" /></td>
-                                    		</tr>
-                                    	</c:forEach> --%>
                                     </tbody>
                                 </table>
                             </div>

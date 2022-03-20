@@ -6,7 +6,7 @@ import com.shopmember.myapp.OrderdetailDTO;
 import com.shopmember.myapp.OrdermainVO;
 import com.shopmember.myapp.OrdersubVO;
 
-public interface OrderMapper {
+public interface OrderMapper { 
 	
 	public void insertMain(OrdermainVO ordermain); 
 	

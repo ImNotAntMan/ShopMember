@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopmember.mapper.CartMapper;
+import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartsubVO;
 
@@ -54,16 +55,16 @@ public class CartServiceImpl implements CartService {
 		return mapper.readMainid(cartmain);
 	} 
 	
-//	@Override
-//	public void deleteSub(CartsubVO cartsub) {
-//		log.info(cartsub);
-//		mapper.deleteSub(cartsub);
-//	}
-//	
-//	@Override
-//	public void updateSub(CartsubVO cartsub) {
-//		mapper.updateSub(cartsub);
-//	}
+	@Override
+	public void deleteSub(CartsubVO cartsub) {
+		log.info(cartsub);
+		mapper.deleteSub(cartsub);
+	}
+	
+	@Override
+	public void updateSub(CartsubVO cartsub) {
+		mapper.updateSub(cartsub);
+	}
 	
 	@Override
 	public void deleteMain(CartmainVO cartmain) {
@@ -76,5 +77,20 @@ public class CartServiceImpl implements CartService {
 //		mapper.deleteSub(cartmain);
 //		mapper.deleteMain(cartmain);
 //		return "redirect:/shop/cartinfo";
+	}
+	
+	@Override
+	public void deletesuball(CartmainVO cartmain) {
+		mapper.deleteSuball(cartmain);
+	}
+	
+	@Override
+	public int getCartTotal(CartmainVO cartmain) {
+		return mapper.getCartTotal(cartmain);
+	}
+	
+	@Override
+	public List<CartdetailDTO> getListCartDetail(CartmainVO cartmain) {
+		return mapper.getListCartDetail(cartmain);
 	}
 }

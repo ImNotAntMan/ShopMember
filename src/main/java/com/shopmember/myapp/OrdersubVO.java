@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class OrdersubVO {
+public class OrdersubVO {  
 	private int os_code;
 	private int om_code;
 	private int p_code;

@@ -49,4 +49,21 @@
 	<delete id="deleteSuball">
 		delete from tblcartsub where cs_code = #{cs_code} 
 	</delete>
+	<select id="getListCartDetail" resultType="com.shopmember.myapp.CartdetailDTO">
+	select m.m_name, p.p_name, p.p_price, cm.cm_code, cm.m_id, cs.p_code, cs.cs_cnt, cs.cs_code, 
+		p.p_price * cs.cs_cnt as subtotal
+		from tblcartmain cm, tblcartsub cs, tblproduct p, tblmember as m  
+		where cm.cm_code = cs.cm_code 
+		and p.p_code = cs.p_code 
+		and m.m_id = cm.m_id 
+		and cm.m_id = #{m_id}
+	</select>
+	<select id="getCartTotal" resultType="int">
+		select sum(p.p_price * cs.cs_cnt)  Total
+			from tblcartmain cm, tblcartsub cs, tblproduct p   
+			where cm.cm_code = cs.cm_code 
+			and p.p_code = cs.p_code 
+			and cm.m_id = #{m_id}
+	</select>
+	
 </mapper>
