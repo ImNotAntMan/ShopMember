@@ -15,7 +15,7 @@
 		values (#{m_id}, #{s_zipcode}, #{s_address01}, #{s_address02})
 	</insert>
 	<select id="read" resultType="com.shopmember.myapp.ShippingVO">
-		select * from tblshipping where m_id = #{m_id}
+		select * from tblshipping where m_id = #{m_id} and s_default = 1
 	</select>
 	<select id="readnum" resultType="com.shopmember.myapp.ShippingVO">
 		select * from tblshipping where m_id = #{m_id} and s_num = #{s_num}

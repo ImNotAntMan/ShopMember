@@ -41,7 +41,7 @@
 		update tblcartsub set cs_cnt = #{cs_cnt} where cs_code = #{cs_code}
 	</update>
 	<delete id="deleteSub">
-		delete from tblcartsub where cs_code = #{cs_code} 
+		delete from tblcartsub where cm_code = #{cm_code} 
 	</delete>
 	<delete id="cartdeleteAll">
 		delete from tblcartsub where cm_code = #{cm_code} 

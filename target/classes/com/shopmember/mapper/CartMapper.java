@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
-import com.shopmember.myapp.CartmemberDTO;
 import com.shopmember.myapp.CartsubVO;
+import com.shopmember.myapp.OrdersubVO;
 
 public interface CartMapper {
 	public List<CartmainVO> getListMain();
 	
 	public List<CartsubVO> getListSub();
 	
-	public List<CartsubVO> getListCart(CartmainVO cartmain);
+	public List<OrdersubVO> getListCart(CartmainVO cartmain);
 
 	public CartmainVO readMain(CartmainVO cartmain);
 	
@@ -30,7 +30,7 @@ public interface CartMapper {
 	
 	public void deleteMain(CartmainVO cartmain);
 	
-	public void deleteSub(CartsubVO cartsub);
+	public void deleteSub(CartmainVO cartmain);
 
 	public void deleteSuball(CartmainVO cartmain);
 

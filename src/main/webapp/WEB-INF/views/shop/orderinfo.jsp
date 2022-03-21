@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>주문 정보</title>
+    <title>주문 내역</title>
 
     <!-- Custom fonts for this template -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,7 +61,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">주문 정보</h1>
+                    <h1 class="h3 mb-2 text-gray-800">주문 내역</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
@@ -76,6 +76,7 @@
                                 <table border=2 class="table table-bordered" width="100%" cellspacing="0" align="center">
                                 	<thead>    
                                         <tr>
+                                            <th>주문번호</th>
                                             <th>상세코드</th>
                                             <th>상품코드</th>
                                             <th>상품명</th>
@@ -83,11 +84,13 @@
                                             <th>수량</th>
                                             <th>단가</th>
                                             <th>금액</th>
+                                            <th>주문일</th>
                                         </tr>
                                 	</thead>
                                     <tbody>
                                 		<c:forEach items="${list}" var="ordersub"> <%-- ${list}내의 이름이 model.addAttribute(이름, 메서드) 여기서의 이름과 같아야 한다. / 컨트롤해서 넘긴 모델을 이렇게 받아야 한다. 글이 5개 있다면 5번 반복하면서 보드에 저장한다는 의미 --%>
                                 			<tr>
+                                				<td>${ordersub.om_code}</td>
                                 				<td>${ordersub.os_code}</td>
                                 				<td>${ordersub.p_code}</td>
                                 				<td>${ordersub.p_name}</td>
@@ -95,9 +98,15 @@
                                 				<td>${ordersub.os_cnt}</td>
                                 				<td><fmt:formatNumber value="${ordersub.p_price}" pattern="#,###" />원</td>
                                 				<td><fmt:formatNumber value="${ordersub.os_money}" pattern="#,###" />원</td>
+                                				<td>${ordersub.om_rdate}</td>
                                 			</tr>
                                 		</c:forEach>
                                     </tbody>
+                                    <tr>
+                                    <c:forEach items="${total}" var="total">
+                                    	총계 :<fmt:formatNumber value="${total.total}" pattern="#,###" />원(주문번호:${total.om_code} 결제일:${total.om_rdate})<br>
+                                    </c:forEach>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

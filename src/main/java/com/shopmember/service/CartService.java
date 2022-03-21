@@ -5,6 +5,7 @@ import java.util.List;
 import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartsubVO;
+import com.shopmember.myapp.OrdersubVO;
 
 public interface CartService { 
 	
@@ -12,9 +13,9 @@ public void cartinsert(CartmainVO cartmain, CartsubVO cartsub);
 	
 	public CartmainVO readMainid(CartmainVO cartmain);
 	
-	public List<CartsubVO> getListCart(CartmainVO cartmain);
+	public List<OrdersubVO> getListCart(CartmainVO cartmain);
 	
-	public void deleteSub(CartsubVO cartsub);
+	public void deleteSub(CartmainVO cartmain);
 	
 	public void deleteMain(CartmainVO cartmain);
 	

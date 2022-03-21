@@ -28,6 +28,5 @@ public class ShippingMapperTest {
 		String m_id = "lion";
 	
 		mapper.getList(pageNum, pageAmount, m_id).forEach(board -> log.info(board));
-	}
-
+	}	
 }
