@@ -8,7 +8,7 @@
 		select * from tblordermain order by om_code desc
 	</select>
 	<insert id="insertMain">
-		insert into tblordermain (m_id) values (#{m_id})
+		insert into tblordermain (om_code, m_id) values (#{om_code}, #{m_id})
 	</insert>
 	<select id="readMain" resultType="com.shopmember.myapp.OrdermainVO">
 		select * from tblordermain where om_code = #{om_code} order by om_code desc limit 0, 1
@@ -17,14 +17,14 @@
 		select * from tblordermain where m_id = #{m_id} order by om_code desc limit 0, 1
 	</select>
 	<delete id="deleteMain">
-		delete from tblordermain where om_code = #{om_code} 
+		delete from tblordermain where cm_code = #{cm_code} 
 	</delete>
 	
 	<select id="getListSub" resultType="com.shopmember.myapp.OrdersubVO">
 		select * from tblordersub order by os_code desc
 	</select>
-	<select id="getListCart" resultType="com.shopmember.myapp.OrdersubVO">
-		select * from tblordersub where om_code = #{om_code}
+	<select id="getListCart" resultType="com.shopmember.myapp.CartsubVO">
+		select * from tblcartsub where cm_code = #{cm_code}
 	</select>
 	<select id="getListOrderDetail" resultType="com.shopmember.myapp.OrderdetailDTO">
 		select os.os_code, p.p_code, p.p_name, p.p_price, os.os_cnt, p.p_price*os.os_cnt os_money    
@@ -70,7 +70,7 @@
 		update tblcartsub set cs_cnt = #{cs_cnt} where cs_code = #{cs_code}
 	</update>
 	<delete id="deleteSub">
-		delete from tblcartsub where cs_code = #{cs_code} 
+		delete from tblcartsub where cm_code = #{cm_code} 
 	</delete>
 	<delete id="deletesuball">
 		delete from tblcartsub where cm_code = #{cm_code} 

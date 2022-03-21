@@ -73,6 +73,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary"><a href="/member/update?m_id=${member.m_id}&?pageNum=${pageNum}">정보수정</a></h6>
                             <h6 class="m-0 font-weight-bold text-primary"><a href="/shop/orderinfo?m_id=${member.m_id}&?pageNum=${pageNum}">구매내역</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/logout?m_id=${member.m_id}&?pageNum=${pageNum}">로그아웃</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.shopmember.mapper.OrderMapper;
 import com.shopmember.myapp.CartmainVO;
+import com.shopmember.myapp.CartsubVO;
 import com.shopmember.myapp.OrderdetailDTO;
 import com.shopmember.myapp.OrdermainVO;
 import com.shopmember.myapp.OrdersubVO;
@@ -58,5 +59,20 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderdetailDTO> getListOrder(CartmainVO cartmain){
 		return mapper.getListOrder(cartmain);
+	}
+	
+	@Override
+	public List<CartsubVO> getListCart(CartsubVO cartsub) {
+		return mapper.getListCart(cartsub);
+	}
+	
+	@Override
+	public void deleteMain(OrdermainVO ordermain) {
+		mapper.deleteMain(ordermain);
+	}
+	
+	@Override
+	public void deleteSub(OrdermainVO ordermain) {
+		mapper.deleteSub(ordermain);
 	}
 }

@@ -9,6 +9,7 @@ import com.shopmember.mapper.CartMapper;
 import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartsubVO;
+import com.shopmember.myapp.OrdersubVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -46,19 +47,19 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public List<CartsubVO> getListCart(CartmainVO cartmain) {
+	public List<OrdersubVO> getListCart(CartmainVO cartmain) {
 		return mapper.getListCart(cartmain);
 	}
-	
+
 	@Override
 	public CartmainVO readMainid(CartmainVO cartmain) {
 		return mapper.readMainid(cartmain);
 	} 
 	
 	@Override
-	public void deleteSub(CartsubVO cartsub) {
-		log.info(cartsub);
-		mapper.deleteSub(cartsub);
+	public void deleteSub(CartmainVO cartmain) {
+		log.info(cartmain);
+		mapper.deleteSub(cartmain);
 	}
 	
 	@Override

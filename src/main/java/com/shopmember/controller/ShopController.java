@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shopmember.myapp.CartdetailDTO;
 import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartmemberDTO;
 import com.shopmember.myapp.CartsubVO;
 import com.shopmember.myapp.OrdermainVO;
+import com.shopmember.myapp.OrdersubVO;
 import com.shopmember.myapp.ShippingVO;
 import com.shopmember.service.CartService;
 import com.shopmember.service.MemberService;
@@ -151,8 +153,20 @@ public class ShopController {
 				log.info("장바구니 내용 없음");
 				return "redirect:/shop/list";
 			} else {
-				// int cm_code = cartmain.getCm_code(); // 로그인된 사용자의 아이디를 사용하는 cartmain의 cm_code / 필요없어졌다.
-				cartservice.getListCartDetail(cartmain).forEach(cartsub -> log.info(cartsub)); // 디버깅용으로 쓴거니까 주석
+				OrdermainVO ordermain = new OrdermainVO();
+				ordermain.setOm_code(cartmain.getCm_code());
+				ordermain.setM_id(m_id);
+				orderservice.insertMain(ordermain); //	영수증번호 보관하는 곳 
+				OrdersubVO ordersub = new OrdersubVO();
+				//cartservice.getListCartDetail(cartmain).forEach(cartsub -> log.info(cartsub)); // 디버깅용으로 쓴거니까 주석
+				for(CartdetailDTO cart : cartservice.getListCartDetail(cartmain)) {
+					log.info("쓰기시작");
+					ordersub.setOm_code(cart.getCm_code());
+					ordersub.setP_code(cart.getP_code());
+					ordersub.setOs_cnt(cart.getCs_cnt());
+					orderservice.insertSub(ordersub);
+					log.info("쓰기성공");
+				}
 				model.addAttribute("list", cartservice.getListCartDetail(cartmain));
 				CartmemberDTO cartmember = new CartmemberDTO();
 				log.info(cartservice.getCartTotal(cartmain));
@@ -162,6 +176,8 @@ public class ShopController {
 				cartmember.setM_id(m_id);
 				System.out.println(cartmember);
 				log.info(cartmember);
+				cartservice.deleteSub(cartmain);
+				cartservice.deleteMain(cartmain);
 				ShippingVO shipping = new ShippingVO();
 				shipping.setM_id(m_id);
 				shipping = shippingservice.read(shipping);
@@ -194,19 +210,6 @@ public class ShopController {
 			} else {
 				CartmemberDTO cartmember = new CartmemberDTO();
 				log.info(cartservice.getCartTotal(cartmain));
-				cartmember.setCm_total(cartservice.getCartTotal(cartmain));
-				cartmember.setCm_code(cartmain.getCm_code());
-				cartmember.setM_name(m_name);
-				cartmember.setM_id(m_id);
-				System.out.println(cartmember);
-				log.info(cartmember);
-				ShippingVO shipping = new ShippingVO();
-				shipping.setM_id(m_id);
-				shipping = shippingservice.read(shipping);
-				log.info("주문지:" + shipping);
-				model.addAttribute("shipping", shipping);
-				model.addAttribute("cartmember", cartmember);
-				model.addAttribute("cartmain", cartmain.getCm_code());	// cm_code 전달을 위해서....
 				log.info("장바구니 내용 있음"); // cm_code를 통해 cartSub를 조회할거야
 				String javascript = "<script>alert('"+ cartmember.getCm_total() + "원 결제하시겠습니까?')</script>"
 						+ "<br>"

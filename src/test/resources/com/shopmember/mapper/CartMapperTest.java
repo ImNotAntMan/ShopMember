@@ -1,5 +1,6 @@
 package com.shopmember.mapper;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,7 +20,7 @@ public class CartMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private CartMapper mapper;
 	
-	//@Test
+	@Test
 	public void testCartTotal() {
 		CartmemberDTO cartmember = new CartmemberDTO();
 		cartmember.setM_id("tiger");
@@ -30,5 +31,12 @@ public class CartMapperTest {
 	
 		
 //		mapper.getList(pageNum, pageAmount, m_id).forEach(board -> log.info(board));
+	}
+	//@Test
+	public void testDeleteSub() {
+		CartmainVO cartmain = new CartmainVO();
+		cartmain.setCm_code(1014);
+		mapper.deleteSub(cartmain);
+		mapper.deleteMain(cartmain);
 	}
 }
