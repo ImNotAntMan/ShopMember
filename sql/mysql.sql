@@ -179,7 +179,7 @@ select sum(p.p_price * cs.cs_cnt)  Total
 /* 장바구니 tiger의 모든 내용을 구매 */
 	
 insert into tblordermain(m_id) values('tiger');
-
+select * from tblordermain;
 insert into tblordersub (om_code, p_code, os_cnt) 
 	select 1002, p_code, cs_cnt from tblcartsub 
 	where cm_code = (select cm_code from tblcartmain where m_id='tiger');
@@ -228,24 +228,27 @@ select sum(p.p_price * cs.cs_cnt)  Total
 	
 /* 장바구니 lion의 모든 내용을 구매 */
 	
-insert into tblordermain(m_id) values('lion');
+insert into tblordermain(m_id) values('tiger');
 insert into tblcartmain(m_id) values('lion');
-
+insert into tblordersub (om_code, p_code, os_cnt) values (4, 1002, 4);
+insert into tblordersub (om_code, p_code, os_cnt) values (4, 1006, 4);
+insert into tblordersub (om_code, p_code, os_cnt) values (4, 1007, 4);
+insert into tblordersub (om_code, p_code, os_cnt) values (4, 1012, 4);
 insert into tblordersub (om_code, p_code, os_cnt) 
 	select 1001, p_code, cs_cnt from tblcartsub 
-	where cm_code = (select cm_code from tblcartmain where m_id='lion');
+	where cm_code = (select cm_code from tblcartmain where m_id='tiger');
 	
 /* lion이 가장 최근 구매한 내용 */
 select om_code from tblordermain where m_id = 'lion'
 	order by om_code desc limit 1;
 
-select om.om_code, om.m_id, os.p_code, os.os_cnt ,
+select om.om_code, om.m_id, os.p_code, os.os_cnt , p.p_name, om.om_rdate,   
 	p.p_price * os.os_cnt as subtotal
 	from tblordermain om, tblordersub os, tblproduct p  
 	where om.om_code = os.om_code
 	and p.p_code = os.p_code 
 	and om.om_code = 
-	(select om_code from tblordermain where m_id = 'lion'
+	(select om_code from tblordermain where m_id = 'tiger'
 	order by om_code desc limit 1);
 
 /* lion이 최근에 구매한 금액 총 합계 조회 */
@@ -255,7 +258,7 @@ select sum(p.p_price * os.os_cnt) total
 	where om.om_code = os.om_code
 	and p.p_code = os.p_code 
 	and om.om_code = 
-	(select om_code from tblordermain where m_id = 'lion'
+	(select om_code from tblordermain where m_id = 'tiger'
 	order by om_code desc limit 1);
 
 desc tblcartsub;

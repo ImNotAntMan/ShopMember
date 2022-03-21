@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.shopmember.myapp.CartmainVO;
 import com.shopmember.myapp.CartmemberDTO;
 import com.shopmember.myapp.CartsubVO;
+import com.shopmember.myapp.OrdermainVO;
 import com.shopmember.myapp.ShippingVO;
 import com.shopmember.service.CartService;
 import com.shopmember.service.MemberService;
+import com.shopmember.service.OrderService;
 import com.shopmember.service.ProductService;
 import com.shopmember.service.ShippingService;
 
@@ -38,8 +40,8 @@ public class ShopController {
 	@Setter(onMethod_ = @Autowired)
 	private ShippingService shippingservice;
 	
-//	@Setter(onMethod_ = @Autowired) 
-//	private OrderService orderservice;
+	@Setter(onMethod_ = @Autowired) 
+	private OrderService orderservice;
 
 	
 	@GetMapping("/list")
@@ -230,18 +232,20 @@ public class ShopController {
 		
 	}
 	
-//	@GetMapping("/orderinfo") 
-//	public String orderinfo(HttpSession session, Model model, CartmainVO cartmain) {
-//		String m_id = (String)session.getAttribute("m_id");
-//		if (m_id != null) {
-//			cartmain.setM_id(m_id);
-//			OrdermainVO ordermain = orderservice.orderproc(cartmain); // om_code 획득
-//			model.addAttribute("list", orderservice.getListCartDetail(ordermain));
-//			log.info(cartmain);
-//			return "/shop/orderinfo";
-//		} else {
-//			log.info("로그인 필요");
-//			return "redirect:/member/login";
-//		}
-//	}
+	@GetMapping("/orderinfo")
+	public String orderinfo(HttpSession session, Model model, CartmainVO cartmain) {
+		String m_id = (String)session.getAttribute("m_id");
+		if (m_id != null) {
+			cartmain.setM_id(m_id);
+			OrdermainVO ordermain = orderservice.orderproc(cartmain); // om_code 획득
+			log.info(ordermain);
+			model.addAttribute("list", orderservice.getListOrder(cartmain));
+			model.addAttribute("total", orderservice.getOrderTotal(cartmain));
+			log.info(cartmain);
+			return "/shop/orderinfo";
+		} else {
+			log.info("로그인 필요");
+			return "redirect:/member/login";
+		}
+	}
 }
